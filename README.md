@@ -7,7 +7,6 @@ Un simple conversor de monedas desarrollado en Java que utiliza una API externa 
 ![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen)
 =======
 
->>>>>>> 881ff9ba08b27b28c90d3350dbe46ec373c04f9a
 
 ## Tabla de Contenidos
 1. [Descripción](#descripción)
