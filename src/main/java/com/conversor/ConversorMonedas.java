@@ -1,21 +1,19 @@
 package com.conversor;
 
 public class ConversorMonedas {
-
-    private ApiClient apiClient;
+    private final ApiClient apiClient;
 
     public ConversorMonedas() {
         this.apiClient = new ApiClient();
     }
 
-    public void realizarConversion(String monedaOrigen, String monedaDestino, double cantidad) {
+    // Método para convertir una cantidad de una moneda a otra
+    public double convertir(double cantidad, String monedaOrigen, String monedaDestino) {
         double tasaCambio = apiClient.obtenerTasaCambio(monedaOrigen, monedaDestino);
-
         if (tasaCambio != -1) {
-            double resultado = cantidad * tasaCambio;
-            System.out.println(cantidad + " " + monedaOrigen + " son " + resultado + " " + monedaDestino);
+            return cantidad * tasaCambio;
         } else {
-            System.out.println("Error al obtener la tasa de cambio.");
+            return -1; // Indicar que hubo un error en la conversión
         }
     }
 }

@@ -3,65 +3,73 @@ package com.conversor;
 import java.util.Scanner;
 
 public class ConversorMonedasApp {
+    private final ConversorMonedas conversorMonedas;
+    private final ConversionHistory conversionHistory;
 
-    public static void main(String[] args) {
+    public ConversorMonedasApp() {
+        this.conversorMonedas = new ConversorMonedas();
+        this.conversionHistory = new ConversionHistory();
+    }
+
+    public void iniciar() {
         Scanner scanner = new Scanner(System.in);
-        ConversorMonedas conversorMonedas = new ConversorMonedas();
-        int opcion;
+        System.out.println("¡Bienvenido al Conversor de Monedas!");
 
-        System.out.println("Bienvenido al Conversor de Monedas!");
+        while (true) {
+            System.out.println("\nSeleccione el país de origen:");
+            String[] paises = Moneda.obtenerPaises();
+            for (int i = 0; i < paises.length; i++) {
+                System.out.println((i + 1) + ". " + paises[i]);
+            }
+            System.out.print("Número del país de la moneda de origen: ");
+            int paisOrigenIndex = scanner.nextInt() - 1;
+            if (paisOrigenIndex < 0 || paisOrigenIndex >= paises.length) {
+                System.out.println("Opción no válida. Intente nuevamente.");
+                continue;
+            }
+            String monedaOrigen = Moneda.getCodigoMoneda(paises[paisOrigenIndex]);
 
-        do {
-            System.out.println("\nElija una opción válida:");
-            System.out.println("1. Dólar a Peso Argentino");
-            System.out.println("2. Peso Argentino a Dólar");
-            System.out.println("3. Dólar a Real Brasileño");
-            System.out.println("4. Real Brasileño a Dólar");
-            System.out.println("5. Dólar a Peso Colombiano");
-            System.out.println("6. Peso Colombiano a Dólar");
-            System.out.println("7. Dólar a Soles Peruanos");
-            System.out.println("8. Soles Peruanos a Dólar");
-            System.out.println("9. Salir");
+            System.out.println("\nSeleccione el país de destino:");
+            for (int i = 0; i < paises.length; i++) {
+                System.out.println((i + 1) + ". " + paises[i]);
+            }
+            System.out.print("Número del país de la moneda de destino: ");
+            int paisDestinoIndex = scanner.nextInt() - 1;
+            if (paisDestinoIndex < 0 || paisDestinoIndex >= paises.length || paisDestinoIndex == paisOrigenIndex) {
+                System.out.println("Opción no válida. Intente nuevamente.");
+                continue;
+            }
+            String monedaDestino = Moneda.getCodigoMoneda(paises[paisDestinoIndex]);
 
-            opcion = scanner.nextInt();
+            System.out.print("Ingrese la cantidad: ");
+            double cantidad = scanner.nextDouble();
 
-            if (opcion >= 1 && opcion <= 8) {
-                System.out.println("Introduce la cantidad a convertir:");
-                double cantidad = scanner.nextDouble();
+            double resultado = conversorMonedas.convertir(cantidad, monedaOrigen, monedaDestino);
+            if (resultado != -1) {
+                ConversionEntry entry = new ConversionEntry(cantidad, monedaOrigen, resultado, monedaDestino);
+                conversionHistory.agregarConversion(entry);
+                System.out.println(entry);
 
-                switch (opcion) {
-                    case 1:
-                        conversorMonedas.realizarConversion("USD", "ARS", cantidad);
-                        break;
-                    case 2:
-                        conversorMonedas.realizarConversion("ARS", "USD", cantidad);
-                        break;
-                    case 3:
-                        conversorMonedas.realizarConversion("USD", "BRL", cantidad);
-                        break;
-                    case 4:
-                        conversorMonedas.realizarConversion("BRL", "USD", cantidad);
-                        break;
-                    case 5:
-                        conversorMonedas.realizarConversion("USD", "COP", cantidad);
-                        break;
-                    case 6:
-                        conversorMonedas.realizarConversion("COP", "USD", cantidad);
-                        break;
-                    case 7:
-                        conversorMonedas.realizarConversion("USD", "PEN", cantidad);
-                        break;
-                    case 8:
-                        conversorMonedas.realizarConversion("PEN", "USD", cantidad);
-                        break;
-                    default:
-                        System.out.println("Opción no válida. Intente de nuevo.");
-                        break;
-                }
+                // Mostrar el historial de conversiones inmediatamente después de cada conversión
+                conversionHistory.mostrarHistorial();
+            } else {
+                System.out.println("Error en la conversión. Por favor, intente nuevamente.");
             }
 
-        } while (opcion != 9);
+            System.out.print("\n¿Desea realizar otra conversión? (s/n): ");
+            scanner.nextLine(); // Limpiar el buffer
+            String continuar = scanner.nextLine();
+            if (!continuar.equalsIgnoreCase("s")) {
+                System.out.println("Saliendo de la aplicación. ¡Hasta luego!");
+                break;
+            }
+        }
 
-        System.out.println("Gracias por usar el conversor. ¡Hasta luego!");
+        scanner.close();
+    }
+
+    public static void main(String[] args) {
+        ConversorMonedasApp app = new ConversorMonedasApp();
+        app.iniciar();
     }
 }

@@ -33,24 +33,26 @@ public class ApiClient {
                 in.close();
                 connection.disconnect();
 
+                // Parsear el JSON de la respuesta
                 JsonObject jsonObject = JsonParser.parseString(content.toString()).getAsJsonObject();
                 JsonObject rates = jsonObject.getAsJsonObject("conversion_rates");
 
+                // Verificar si la moneda destino está disponible
                 if (rates.has(monedaDestino)) {
                     return rates.get(monedaDestino).getAsDouble();
                 } else {
-                    System.out.println("Moneda destino no válida.");
-                    return -1;
+                    System.out.println("Moneda destino no válida: " + monedaDestino);
+                    return -1; // Indicar que hubo un error
                 }
 
             } else {
                 System.out.println("Error en la solicitud: " + responseCode);
-                return -1;
+                return -1; // Indicar que hubo un error
             }
 
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-            return -1;
+            System.out.println("Error al realizar la solicitud: " + e.getMessage());
+            return -1; // Indicar que hubo un error
         }
     }
 }
