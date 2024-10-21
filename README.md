@@ -3,7 +3,11 @@
 Un simple conversor de monedas desarrollado en Java que utiliza una API externa para convertir entre distintas monedas (USD, ARS, BRL, COP, PEN). El usuario puede seleccionar entre varias opciones de conversión.
 
 ![Java](https://img.shields.io/badge/Java-11-blue)
+<<<<<<< HEAD
 ![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen)
+=======
+
+>>>>>>> 881ff9ba08b27b28c90d3350dbe46ec373c04f9a
 
 ## Tabla de Contenidos
 1. [Descripción](#descripción)
