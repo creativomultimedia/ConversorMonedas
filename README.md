@@ -15,10 +15,10 @@ Un simple conversor de monedas desarrollado en Java que utiliza una API externa 
 
 ## Descripción
 
-Este proyecto es un conversor de monedas que permite convertir entre USD y otras monedas (Peso Argentino, Real Brasileño, Peso Colombiano y Soles Peruanos). La aplicación está desarrollada en Java, utilizando una API de tipo REST para obtener las tasas de cambio en tiempo real.
+Este proyecto es un conversor de monedas que permite convertir entre USD y otras monedas (Peso Argentino, Real Brasileño, Peso Colombiano y Soles Peruanos). La aplicación está desarrollada en Java, utilizando una API REST para obtener las tasas de cambio en tiempo real. Además, el usuario puede elegir el país de origen y el país de destino para una mejor experiencia.
 
 ## Capturas de Pantalla
-![Captura de Pantalla](https://github.com/creativomultimedia/ConversorMonedas/blob/main/Conversor.jpg)
+![Captura de Pantalla](https://github.com/creativomultimedia/ConversorMonedas/blob/main/Conversor-Actualizado.jpg)
 
 ## Instalación
 
@@ -35,25 +35,40 @@ mvn exec:java
 
 ## Uso
 
-1. Al ejecutar la aplicación, el usuario verá un menú con las siguientes opciones:
-    - Convertir Dólares a Pesos Argentinos.
-    - Convertir Pesos Argentinos a Dólares.
-    - Convertir Dólares a Reales Brasileños.
-    - Convertir Reales Brasileños a Dólares.
-    - Y otras más...
+1. Al ejecutar la aplicación, el usuario verá un menú para seleccionar el país de origen y el país de destino.
 
-2. El usuario selecciona la opción deseada e ingresa la cantidad que desea convertir.
+2. Luego, el usuario ingresa la cantidad que desea convertir.
 3. La aplicación muestra el resultado utilizando la tasa de cambio actualizada.
 
 Ejemplo:
 
-    Seleccione una opción: USD a ARS
-    ARS a USD Opción:
-    1 
-    Ingrese la cantidad en USD:
-    100 
-    Resultado: 
-    100 USD = 35,000 ARS
+        ¡Bienvenido al Conversor de Monedas!
+      
+         Seleccione el país de origen:
+         1. Argentina
+         2. Brasil
+         3. Colombia
+         4. Perú
+         5. Estados Unidos
+            Elija el número del país de origen: 5
+      
+         Seleccione el país de destino:
+         1. Argentina
+         2. Brasil
+         3. Colombia
+         4. Perú
+         5. Estados Unidos
+            Elija el número del país de destino: 1
+            Ingrese la cantidad: 100
+            100 USD = 35,000 ARS
+
+
+## Características Adicionales
+1. Historial de Conversiones: Mantiene un registro de las conversiones realizadas, mostrando la cantidad, las monedas y la fecha y hora de cada conversión.
+2. Soporte para Más Monedas: Ampliar fácilmente la lista de monedas disponibles.
+3. Registros con Marca de Tiempo: Registra las conversiones con la fecha y hora, brindando un contexto adicional sobre cada operación.
+
+
 
 ## Tecnologías
 
