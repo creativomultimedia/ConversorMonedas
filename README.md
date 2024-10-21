@@ -18,8 +18,7 @@ Un simple conversor de monedas desarrollado en Java que utiliza una API externa 
 Este proyecto es un conversor de monedas que permite convertir entre USD y otras monedas (Peso Argentino, Real Brasileño, Peso Colombiano y Soles Peruanos). La aplicación está desarrollada en Java, utilizando una API de tipo REST para obtener las tasas de cambio en tiempo real.
 
 ## Capturas de Pantalla
-
-![Captura de Pantalla](ruta-a-imagen.png)
+![Captura de Pantalla](https://github.com/creativomultimedia/ConversorMonedas/blob/main/Conversor.jpg)
 
 ## Instalación
 
